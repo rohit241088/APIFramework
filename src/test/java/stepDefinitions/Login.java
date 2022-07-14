@@ -17,19 +17,18 @@ public class Login {
     @When("call the Login api with user name {string} and password {string}")
     public void call_the_login_api_with_user_name_and_password(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
-        apiCall.getBody().buildRequestBodyObject("email",string);
-          apiCall.getBody().buildRequestBodyObject("password",string2);
-          apiCall.callAPI();
+        apiCall.body().buildRequestBodyObject("email",string);
+          apiCall.body().buildRequestBodyObject("password",string2);
+          apiCall.callAPI(requestClassPojo.Login.class.getSimpleName());
 
     }
-    @Then("status code should be {string} and token should be not null")
-    public void status_code_should_be_and_token_should_be_not_null(String string) {
+    @Then("login status code should be {string}")
+    public void login_status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
         Response response=apiCall.getResponse();
               response.then().log().all();
         verify.assertTrue(apiCall.getResponse().statusCode()==Integer.parseInt(string));
 jsonPath=new JsonPath(response.asString());
-        verify.assertTrue(apiCall.getResponse().asString().contains("token"));
          verify.assertAll();
 
     }

@@ -14,7 +14,6 @@ public class BaseTest {
     public void setupTest(){
         apiCall=new ApiCall();
         verify=new SoftAssert();
-
     }
 
 @After

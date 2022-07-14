@@ -3,9 +3,6 @@ package base;
 import RequestBuilder.Request;
 import RequestBuilder.RequestBody;
 import io.restassured.response.Response;
-import org.testng.asserts.SoftAssert;
-
-import java.util.function.Predicate;
 
 public class ApiCall extends Request {
     private RequestBody body=null;
@@ -25,7 +22,7 @@ public void setRequestClass(Class<?>cls){
     body=new RequestBody(cls);
     clsName=cls.getSimpleName();
 }
-public RequestBody getBody(){
+public RequestBody body(){
     return body;
 }
 public void addHeader(String name,String value){
@@ -37,8 +34,8 @@ public void addHeader(String name,String value){
     public void addPath(String name,String value){
         requestSpecification=requestSpecification.pathParam(name,value);
     }
-public void callAPI() {
-    String endPointValue = (String) super.configHelper.getValue(clsName);
+public void callAPI(String apiName) {
+    String endPointValue = (String) super.configHelper.getValue(apiName);
     String apiMethodType = endPointValue.split("@@@")[0];
     String apiEndPoint = endPointValue.split("@@@")[1];
     switch (apiMethodType) {
