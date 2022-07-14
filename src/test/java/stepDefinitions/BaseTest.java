@@ -17,6 +17,7 @@ public class BaseTest {
         BaseTest.sc=sc;
         apiCall=new ApiCall();
         verify=new SoftAssert();
+
     }
 
 @After
