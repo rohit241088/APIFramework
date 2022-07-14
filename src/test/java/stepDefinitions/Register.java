@@ -10,6 +10,7 @@ import static stepDefinitions.BaseTest.*;
 import static stepDefinitions.BaseTest.verify;
 
 public class Register {
+    public static JsonPath registerResponse=null;
     @Given("User is trying to register")
     public void user_is_trying_to_register() {
         // Write code here that turns the phrase above into concrete actions
@@ -28,6 +29,7 @@ public class Register {
     public void status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
         Response response = apiCall.getResponse();
+        registerResponse=new JsonPath(response.asString());
               verify.assertEquals(apiCall.getResponse().statusCode() , Integer.parseInt(string));
         jsonPath = new JsonPath(response.asString());
          verify.assertAll();

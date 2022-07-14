@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 
 import static stepDefinitions.BaseTest.*;
 public class Login {
+    public static JsonPath loginResponse=null;
     @Given("User is trying to login")
     public void user_is_trying_to_login() {
         // Write code here that turns the phrase above into concrete actions
@@ -29,7 +30,7 @@ public class Login {
         Response response=apiCall.getResponse();
 
         verify.assertEquals(apiCall.getResponse().statusCode(),Integer.parseInt(string));
-jsonPath=new JsonPath(response.asString());
+loginResponse=new JsonPath(response.asString());
          verify.assertAll();
 
     }

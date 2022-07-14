@@ -188,9 +188,7 @@
             <includes>
               <include> **/*runner.RunnerClass.java</include>
               <parallel>methods</parallel>-->
-              <useUnlimitedThreads>true</useUnlimitedThreads>
-              <testFailureIgnore>true</testFailureIgnore>
-            </includes>
+                  </includes>
 
           </configuration>
         </plugin>
