@@ -14,17 +14,21 @@ public class UpdateUser {
        apiCall.setRequestClass(requestClassPojo.UpdateUser.class);
     }
 
-    @When("call the Register api with name {string} and job {string}")
-    public void call_the_register_api_with_name_and_job(String string, String string2) {
+    @When("call the Register api with name {string} and job {string} and user {string}")
+    public void call_the_register_api_with_name_and_job_and_user(String string, String string2, String string3) {
         // Write code here that turns the phrase above into concrete actions
         apiCall.body().buildRequestBodyObject("name", string);
         apiCall.body().buildRequestBodyObject("job", string2);
-        apiCall.callAPI(requestClassPojo.UpdateUser.class.getSimpleName());
+        apiCall.callAPI(requestClassPojo.UpdateUser.class.getSimpleName(),"index",string3);
     }
     @Then("Update user status code should be {string}")
     public void update_user_status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
-        verify.assertTrue(apiCall.getResponse().statusCode() == Integer.parseInt(string));
+        int actualStatusCode=apiCall.getResponse().statusCode();
+        int expected=Integer.valueOf(string);
+        System.out.println("Actual status code is "+actualStatusCode+" and expected is "+expected);
+        verify.assertTrue(apiCall.getResponse().statusCode()==Integer.valueOf(string));
+        verify.assertAll();
     }
 
 

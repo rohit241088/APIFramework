@@ -11,6 +11,7 @@ public class Login {
     @Given("User is trying to login")
     public void user_is_trying_to_login() {
         // Write code here that turns the phrase above into concrete actions
+
       apiCall.setRequestClass(requestClassPojo.Login.class);
 
     }
@@ -26,8 +27,8 @@ public class Login {
     public void login_status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
         Response response=apiCall.getResponse();
-              response.then().log().all();
-        verify.assertTrue(apiCall.getResponse().statusCode()==Integer.parseInt(string));
+
+        verify.assertEquals(apiCall.getResponse().statusCode(),Integer.parseInt(string));
 jsonPath=new JsonPath(response.asString());
          verify.assertAll();
 

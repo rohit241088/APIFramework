@@ -2,6 +2,7 @@ package base;
 
 import RequestBuilder.Request;
 import RequestBuilder.RequestBody;
+import io.cucumber.java.Scenario;
 import io.restassured.response.Response;
 
 public class ApiCall extends Request {
@@ -34,35 +35,63 @@ public void addHeader(String name,String value){
     public void addPath(String name,String value){
         requestSpecification=requestSpecification.pathParam(name,value);
     }
-public void callAPI(String apiName) {
-    String endPointValue = (String) super.configHelper.getValue(apiName);
-    String apiMethodType = endPointValue.split("@@@")[0];
-    String apiEndPoint = endPointValue.split("@@@")[1];
-    switch (apiMethodType) {
-        case "get": case "Get":
-            response = requestSpecification.log().all().when().get(apiEndPoint);
-            break;
-        case "post": case "Post":
-          if (body.returnRequestBodyObject()==null){
-              response = requestSpecification.log().all().when().post(apiEndPoint);
+    public void callAPI(String apiName) {
+        String endPointValue = (String) super.configHelper.getValue(apiName);
+        String apiMethodType = endPointValue.split("@@@")[0];
+        String apiEndPoint = endPointValue.split("@@@")[1];
+        switch (apiMethodType) {
+            case "get": case "Get":
+                response = requestSpecification.log().all().when().get(apiEndPoint);
+                break;
+            case "post": case "Post":
+                if (body.returnRequestBodyObject()==null){
+                    response = requestSpecification.log().all().when().post(apiEndPoint);
+                }
+                else{
+                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().post(apiEndPoint);
+                }
+                break;
+            case "put": case "Put":
+                if (body.returnRequestBodyObject()==null){
+                    response = requestSpecification.log().all().when().put(apiEndPoint);
+                }
+                else{
+                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().put(apiEndPoint);
+                }
+                break;
         }
-          else{
-              response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().post(apiEndPoint);
-          }
-break;
-        case "put": case "Put":
-            if (body.returnRequestBodyObject()==null){
-                response = requestSpecification.log().all().when().put(apiEndPoint);
-            }
-            else{
-                response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().put(apiEndPoint);
-            }
-            break;
     }
-}
+    public void callAPI(String apiName,String current,String tobeReplaced) {
+        String endPointValue = (String) super.configHelper.getValue(apiName);
+        String apiMethodType = endPointValue.split("@@@")[0];
+        String apiEndPoint = endPointValue.split("@@@")[1].replace(current,tobeReplaced);
+        switch (apiMethodType) {
+            case "get": case "Get":
+                response = requestSpecification.log().all().when().get(apiEndPoint);
+                break;
+            case "post": case "Post":
+                if (body.returnRequestBodyObject()==null){
+                    response = requestSpecification.log().all().when().post(apiEndPoint);
+                }
+                else{
+                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().post(apiEndPoint);
+                }
+                break;
+            case "put": case "Put":
+                if (body.returnRequestBodyObject()==null){
+                    response = requestSpecification.log().all().when().put(apiEndPoint);
+                }
+                else{
+                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().put(apiEndPoint);
+                }
+                break;
+        }
+    }
 
 public Response getResponse(){
-    return response;
+     response.then().log().all();
+
+       return  response;
 }
 
 }

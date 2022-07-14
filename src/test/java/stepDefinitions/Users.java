@@ -21,7 +21,8 @@ public class Users {
     }
     @Then("Users list api status code should be {string}")
     public void users_list_api_status_code_should_be(String string) {
-        verify.assertTrue(apiCall.getResponse().statusCode()==Integer.parseInt(string));
+        verify.assertEquals(apiCall.getResponse().statusCode(),Integer.parseInt(string));
+        verify.assertAll();
     }
 
 }

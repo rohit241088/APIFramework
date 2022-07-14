@@ -28,8 +28,7 @@ public class Register {
     public void status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
         Response response = apiCall.getResponse();
-        response.then().log().all();
-        verify.assertTrue(apiCall.getResponse().statusCode() == Integer.parseInt(string));
+              verify.assertEquals(apiCall.getResponse().statusCode() , Integer.parseInt(string));
         jsonPath = new JsonPath(response.asString());
          verify.assertAll();
     }
