@@ -40,7 +40,7 @@ jsonPath=new JsonPath(response.asString());
         // Write code here that turns the phrase above into concrete actions
         Response response=apiCall.getResponse();
         response.then().log().all();
-        verify.assertTrue(apiCall.getResponse().statusCode()==Integer.parseInt(string));
+       verify.assertTrue(apiCall.getResponse().statusCode()==Integer.parseInt(string));
         verify.assertAll();
     }
 

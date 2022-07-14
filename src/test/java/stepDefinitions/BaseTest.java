@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import base.ApiCall;
+import io.cucumber.core.logging.Logger;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -17,11 +18,10 @@ public class BaseTest {
         BaseTest.sc=sc;
         apiCall=new ApiCall();
         verify=new SoftAssert();
-
     }
 
 @After
-    public void tearDown(){
-        apiCall.requestSpecification=null;
+    public void tearDown(Scenario sc){
+           apiCall.requestSpecification=null;
         }
 }
