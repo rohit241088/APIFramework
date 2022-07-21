@@ -155,7 +155,7 @@ public class Users {
             "avatar"
     })
 
-    public class data {
+    public static class data {
 
         @JsonProperty("id")
         private Integer id;
@@ -268,7 +268,7 @@ public class Users {
             "text"
     })
 
-    public class Support {
+    public static class Support {
 
         @JsonProperty("url")
         private String url;

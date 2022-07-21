@@ -23,6 +23,8 @@ public class UpdateUser {
         // Write code here that turns the phrase above into concrete actions
         apiCall.body().buildRequestBodyObject("name", string).buildRequestBodyObject("job", string2);
         response=apiCall.callAPI(requestClassPojo.UpdateUser.class.getSimpleName(),"index",string3);
+        response.then().log().all();
+        updateUser=response.as(responseClassPojo.UpdateUser.class);
 
     }
     @Then("Update user status code should be {string}")

@@ -6,4 +6,4 @@ Feature: Update user Feature test
     Examples:
       |name|job|statuscode|user|
       |morpheus|zion resident|200|2|
-      |rohit|ds|240|22|
+      |rohit|ds|200|22|
