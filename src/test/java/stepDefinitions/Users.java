@@ -22,16 +22,14 @@ public class Users {
     @When("call the  api with page  and pagevalue={string}")
     public void call_the_api_with_page_and_pagevalue(String string) {
         apiCall.addQueryParameter("page",Integer.parseInt(string));
-       response= apiCall.callAPI("Users");
-        response.then().log().all();
-        users=response.as(responseClassPojo.Users.class);
+       response= apiCall.callAPI(this.getClass().getSimpleName());
+
 
     }
     @Then("Users list api status code should be {string}")
     public void users_list_api_status_code_should_be(String string) {
         if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
-
-            sc.log("Url is "+users.getSupport().getUrl());
+            users=response.as(responseClassPojo.Users.class);
         }
         int actualStatusCode=response.statusCode();
         int expected=Integer.valueOf(string);

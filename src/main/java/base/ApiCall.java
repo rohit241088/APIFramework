@@ -4,24 +4,29 @@ import RequestBuilder.Request;
 import RequestBuilder.RequestBody;
 import io.cucumber.java.Scenario;
 import io.restassured.response.Response;
+import requestClassPojo.BaseRequest;
+
+import java.lang.reflect.Field;
 
 public class ApiCall extends Request {
     private RequestBody body=null;
 
     private Request request=null;
-   private String clsName=null;
+   public String clsName=null;
    private Response response;
+   private Scenario sc;
 
 
-public ApiCall(){
+public ApiCall(Scenario sc){
+    this.sc=sc;
      request=new Request();
 
 }
 
 
-public void setRequestClass(Class<?>cls){
+public<T extends BaseRequest> void setRequestClass(Class<T>cls){
     body=new RequestBody(cls);
-    clsName=cls.getSimpleName();
+
 }
 public RequestBody body(){
     return body;
@@ -36,64 +41,65 @@ public void addHeader(String name,String value){
         requestSpecification=requestSpecification.pathParam(name,value);
     }
     public Response callAPI(String apiName) {
+    this.clsName=apiName;
         String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];
         String apiEndPoint = endPointValue.split("@@@")[1];
+        sc.log("EndPoint is "+apiEndPoint);
+         this.hitApi(apiEndPoint,apiMethodType);
+        return  response;
+    }
+
+    private void logAllBodyValues(){
+    if(body.returnRequestBodyObject()!=null){
+        Field[] fields=body.returnRequestBodyObject().getClass().getDeclaredFields();
+        for(Field field:fields){
+            try {
+                sc.log(body.returnRequestBodyObject().getClass().getSimpleName()+" field name "+field.getName()+" value is "+(String) field.get(body.returnRequestBodyObject()));
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    }
+    private void hitApi(String apiEndPoint,String apiMethodType){
         switch (apiMethodType) {
             case "get": case "Get":
-                response = requestSpecification.log().all().when().get(apiEndPoint);
+
+                response = requestSpecification.when().get(apiEndPoint);
                 break;
             case "post": case "Post":
                 if (body.returnRequestBodyObject()==null){
-                    response = requestSpecification.log().all().when().post(apiEndPoint);
+
+                    response = requestSpecification.when().post(apiEndPoint);
                 }
                 else{
-                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().post(apiEndPoint);
+                    this.logAllBodyValues();
+                    response = requestSpecification.body(body.returnRequestBodyObject()).when().post(apiEndPoint);
                 }
                 break;
             case "put": case "Put":
                 if (body.returnRequestBodyObject()==null){
-                    response = requestSpecification.log().all().when().put(apiEndPoint);
+                    response = requestSpecification.when().put(apiEndPoint);
                 }
                 else{
-                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().put(apiEndPoint);
+                    this.logAllBodyValues();
+                    response = requestSpecification.body(body.returnRequestBodyObject()).when().put(apiEndPoint);
                 }
                 break;
         }
-        return  response;
     }
     public Response callAPI(String apiName,String current,String tobeReplaced) {
+        this.clsName=apiName;
         String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];
         String apiEndPoint = endPointValue.split("@@@")[1].replace(current,tobeReplaced);
-        switch (apiMethodType) {
-            case "get": case "Get":
-                response = requestSpecification.log().all().when().get(apiEndPoint);
-                break;
-            case "post": case "Post":
-                if (body.returnRequestBodyObject()==null){
-                    response = requestSpecification.log().all().when().post(apiEndPoint);
-                }
-                else{
-                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().post(apiEndPoint);
-                }
-                break;
-            case "put": case "Put":
-                if (body.returnRequestBodyObject()==null){
-                    response = requestSpecification.log().all().when().put(apiEndPoint);
-                }
-                else{
-                    response = requestSpecification.body(body.returnRequestBodyObject()).log().all().when().put(apiEndPoint);
-                }
-                break;
-        }
+         this.hitApi(apiEndPoint,apiMethodType);
         return  response;
     }
 
 public Response getResponse(){
-     response.then().log().all();
-
-       return  response;
+          return  response;
 }
 
 }

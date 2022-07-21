@@ -1,6 +1,6 @@
 package requestClassPojo;
 
-public class Register {
+public class Register extends BaseRequest {
     public String email;
     public String password;
 

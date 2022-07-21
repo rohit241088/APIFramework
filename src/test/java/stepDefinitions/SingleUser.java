@@ -20,7 +20,7 @@ private responseClassPojo.SingleUser singleUser=null;
     }
     @When("call the Get single get user api with user {string}")
     public void call_the_get_single_get_user_api_with_user(String string) {
-                 response=apiCall.callAPI("SingleUser","index",string);
+                 response=apiCall.callAPI(this.getClass().getSimpleName(),"index",string);
                  singleUser=response.as(responseClassPojo.SingleUser.class);
 
     }
@@ -28,10 +28,9 @@ private responseClassPojo.SingleUser singleUser=null;
     @Then("get user status code should be {string}")
     public void get_user_status_code_should_be(String string) {
         if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
-sc.log("User email is "+singleUser.getData().getEmail());
-            sc.log("User email is "+singleUser.getSupport().getUrl());
+            singleUser=response.as(responseClassPojo.SingleUser.class);
         }
-             verify.assertEquals(response.statusCode(),Integer.parseInt(string));
+               verify.assertEquals(response.statusCode(),Integer.parseInt(string));
              verify.assertAll();
     }
 

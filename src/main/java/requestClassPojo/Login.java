@@ -1,6 +1,6 @@
 package requestClassPojo;
 
-public class Login {
+public class Login extends BaseRequest{
     public String email;
     public String password;
 

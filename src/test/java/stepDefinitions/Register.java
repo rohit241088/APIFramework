@@ -23,18 +23,15 @@ public class Register {
     public void call_the_register_api_with_user_name_and_password(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
         apiCall.body().buildRequestBodyObject("email", string).buildRequestBodyObject("password", string2);
-        response = apiCall.callAPI(requestClassPojo.Register.class.getSimpleName());
+        response = apiCall.callAPI(this.getClass().getSimpleName());
     }
 
     @Then("registration status code should be {string}")
     public void status_code_should_be(String string) {
                 if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
-                    String res="{"+response.asString()+"}";
-registerResponse=response.as(responseClassPojo.Register.class);
-                    sc.log("ID value from Login response "+registerResponse.getId());
-        }
-        // Write code here that turns the phrase above into concrete actions
-        verify.assertEquals(response.statusCode() , Integer.parseInt(string));
+               registerResponse=response.as(responseClassPojo.Register.class);
+                  }
+               verify.assertEquals(response.statusCode() , Integer.parseInt(string));
         verify.assertAll();
     }
 

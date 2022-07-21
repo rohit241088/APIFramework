@@ -20,7 +20,7 @@ public class Login {
     public void call_the_login_api_with_user_name_and_password(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
         apiCall.body().buildRequestBodyObject("email",string).buildRequestBodyObject("password",string2);
-         response= apiCall.callAPI(requestClassPojo.Login.class.getSimpleName());
+         response= apiCall.callAPI(this.getClass().getSimpleName());
 
     }
 
@@ -30,7 +30,7 @@ public class Login {
         // Write code here that turns the phrase above into concrete actions
         if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
             loginResponse=response.as(responseClassPojo.Login.class);
-            sc.log("Token value from Login response "+loginResponse.getToken());
+
         }
          verify.assertEquals(response.statusCode(),Integer.parseInt(string));
          verify.assertTrue(loginResponse.getToken()!=null);

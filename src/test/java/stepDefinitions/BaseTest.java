@@ -16,13 +16,14 @@ public class BaseTest {
     @Before
     public void setupTest(Scenario sc){
         BaseTest.sc=sc;
-        apiCall=new ApiCall();
+        apiCall=new ApiCall(sc);
         verify=new SoftAssert();
     }
 
 @After
-    public void tearDown(Scenario sc){
-           apiCall.requestSpecification=null;
+    public void tearDown(){
+        sc.log(apiCall.clsName+" api response is "+ apiCall.getResponse().asString());
+              apiCall.requestSpecification=null;
         }
 
 

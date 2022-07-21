@@ -22,17 +22,13 @@ public class UpdateUser {
     public void call_the_register_api_with_name_and_job_and_user(String string, String string2, String string3) {
         // Write code here that turns the phrase above into concrete actions
         apiCall.body().buildRequestBodyObject("name", string).buildRequestBodyObject("job", string2);
-        response=apiCall.callAPI(requestClassPojo.UpdateUser.class.getSimpleName(),"index",string3);
-        response.then().log().all();
-        updateUser=response.as(responseClassPojo.UpdateUser.class);
-
-    }
+        response=apiCall.callAPI(this.getClass().getSimpleName(),"index",string3);
+           }
     @Then("Update user status code should be {string}")
     public void update_user_status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
         if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
-            sc.log("User name is "+updateUser.getName());
-            sc.log("User email is "+updateUser.getJob());
+            updateUser=response.as(responseClassPojo.UpdateUser.class);
         }
         int actualStatusCode=response.statusCode();
         int expected=Integer.valueOf(string);
