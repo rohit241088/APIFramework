@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import RequestBuilder.Request;
 import base.ApiCall;
 import io.cucumber.core.logging.Logger;
 import io.cucumber.java.After;
@@ -11,7 +12,6 @@ import org.testng.asserts.SoftAssert;
 public class BaseTest {
     public static ApiCall apiCall;
     public static SoftAssert verify;
-    public static JsonPath jsonPath;
     public static Scenario sc;
     @Before
     public void setupTest(Scenario sc){
@@ -23,5 +23,16 @@ public class BaseTest {
 @After
     public void tearDown(Scenario sc){
            apiCall.requestSpecification=null;
+        }
+
+
+
+        public static boolean ifRequestBodyRequired(String apiName){
+        boolean requestBodyRequired=false;
+           String apiConfig= (String)Request.configHelper.getValue(apiName);
+            if(apiConfig.split("@@@")[0].toLowerCase().compareTo("put")==0||apiConfig.split("@@@")[0].toLowerCase().compareTo("post")==0){
+                requestBodyRequired=true;
+            }
+            return requestBodyRequired;
         }
 }

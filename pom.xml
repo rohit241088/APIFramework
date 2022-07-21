@@ -14,6 +14,12 @@
 
 
   <dependencies>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/me.jvt.cucumber/reporting-plugin -->
     <dependency>
       <groupId>me.jvt.cucumber</groupId>
@@ -187,11 +193,11 @@
           <configuration>
             <includes>
               <include> **/*runner.RunnerClass.java</include>
-              <parallel>methods</parallel>-->
-                  </includes>
+                                </includes>
 
           </configuration>
         </plugin>
+
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>

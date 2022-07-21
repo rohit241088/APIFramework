@@ -35,7 +35,7 @@ public void addHeader(String name,String value){
     public void addPath(String name,String value){
         requestSpecification=requestSpecification.pathParam(name,value);
     }
-    public void callAPI(String apiName) {
+    public Response callAPI(String apiName) {
         String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];
         String apiEndPoint = endPointValue.split("@@@")[1];
@@ -60,8 +60,9 @@ public void addHeader(String name,String value){
                 }
                 break;
         }
+        return  response;
     }
-    public void callAPI(String apiName,String current,String tobeReplaced) {
+    public Response callAPI(String apiName,String current,String tobeReplaced) {
         String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];
         String apiEndPoint = endPointValue.split("@@@")[1].replace(current,tobeReplaced);
@@ -86,6 +87,7 @@ public void addHeader(String name,String value){
                 }
                 break;
         }
+        return  response;
     }
 
 public Response getResponse(){

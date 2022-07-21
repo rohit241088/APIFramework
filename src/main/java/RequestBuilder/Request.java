@@ -8,14 +8,16 @@ import utils.PropertiesHelper;
 public class Request {
 
     public RequestSpecification requestSpecification = null;
-    public PropertiesHelper configHelper = null;
+    public static PropertiesHelper configHelper = null;
 
 
 
     public Request() {
+        if(configHelper==null){
+            configHelper = new PropertiesHelper(System.getProperty("user.dir") + "//src//main//resources//config.properties");
+        }
         requestSpecification = RestAssured.given();
-        configHelper = new PropertiesHelper(System.getProperty("user.dir") + "//src//main//java//resources//config.properties");
-        requestSpecification.baseUri((String) configHelper.getValue("baseURI"));
+       requestSpecification.baseUri((String) configHelper.getValue("baseURI"));
         requestSpecification.contentType("application/json");
     }
 
