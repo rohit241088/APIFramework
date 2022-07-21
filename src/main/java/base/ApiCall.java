@@ -29,7 +29,7 @@ public RequestBody body(){
 public void addHeader(String name,String value){
     requestSpecification=requestSpecification.header(name,value);
 }
-    public void addQueryParameter(String name,String value){
+    public void addQueryParameter(String name,Object value){
         requestSpecification=requestSpecification.queryParam(name,value);
     }
     public void addPath(String name,String value){

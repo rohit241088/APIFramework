@@ -6,11 +6,12 @@ import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import static stepDefinitions.BaseTest.apiCall;
-import static stepDefinitions.BaseTest.verify;
+import static stepDefinitions.BaseTest.*;
+import static stepDefinitions.BaseTest.sc;
 
 public class UpdateUser {
     private Response response=null;
+    private responseClassPojo.UpdateUser updateUser=null;
     @Given("User is trying to update user details")
     public void user_is_trying_to_update_user_details() {
         // Write code here that turns the phrase above into concrete actions
@@ -27,9 +28,13 @@ public class UpdateUser {
     @Then("Update user status code should be {string}")
     public void update_user_status_code_should_be(String string) {
         // Write code here that turns the phrase above into concrete actions
+        if(response.getStatusCode()>=200&&response.getStatusCode()<=299){
+            sc.log("User name is "+updateUser.getName());
+            sc.log("User email is "+updateUser.getJob());
+        }
         int actualStatusCode=response.statusCode();
         int expected=Integer.valueOf(string);
-        System.out.println("Actual status code is "+actualStatusCode+" and expected is "+expected);
+        sc.log("Actual status code is "+actualStatusCode+" and expected is "+expected);
         verify.assertTrue(actualStatusCode==expected);
         verify.assertAll();
     }

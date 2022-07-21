@@ -6,21 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b5551119-c177-4d14-bd65-25275576f7ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RequestBuilder/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RequestBuilder/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/ApiCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/ApiCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/config.Properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.Properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/Login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/Login.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/Register.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/Register.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/SingleUser.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/SingleUser.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/UpdateUser.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/UpdateUser.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/features/Users.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/Users.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/resources/extent.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/runner/RunnerClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/runner/RunnerClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/SingleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/SingleUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/responseClassPojo/SingleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/responseClassPojo/SingleUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/UpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/UpdateUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Users.java" afterDir="false" />
     </list>
@@ -161,23 +148,14 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/stepDefinitions/SingleUser.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/stepDefinitions/UpdateUser.java</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/base/ApiCall.java</url>
-          <line>37</line>
-          <properties class="base.ApiCall" method="callAPI">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="13" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/stepDefinitions/Users.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
