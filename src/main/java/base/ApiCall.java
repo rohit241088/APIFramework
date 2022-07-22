@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 import java.util.Iterator;
 
 public class ApiCall extends Request {
-    private RequestBody body=null;
+    private RequestBody<BaseRequest> body=null;
 
     private Request request=null;
    public String clsName=null;

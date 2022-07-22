@@ -32,6 +32,7 @@ public class LoginT {
             loginResponse=response.as(responseClassPojo.Login.class);
 
         }
+        sc.log(loginResponse.getToken());
          verify.assertEquals(response.statusCode(),Integer.parseInt(string));
          verify.assertTrue(loginResponse.getToken()!=null);
          verify.assertAll();
