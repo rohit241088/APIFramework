@@ -1,8 +1,10 @@
 package RequestBuilder;
 
+import requestClassPojo.BaseRequest;
+
 import java.lang.reflect.InvocationTargetException;
 
-public class RequestBody<T> {
+public class RequestBody<T extends BaseRequest> {
 private T object;
     public RequestBody(Class<T>requestClass) {
         try {

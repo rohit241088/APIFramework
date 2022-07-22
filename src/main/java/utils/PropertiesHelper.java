@@ -24,6 +24,9 @@ public class PropertiesHelper {
         }
 
     }
+    public Properties returnPro(){
+        return properties;
+    }
 
     public Object getValue(String key) {
         if (keysValues.size() == 0) {

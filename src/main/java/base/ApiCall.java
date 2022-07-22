@@ -5,8 +5,10 @@ import RequestBuilder.RequestBody;
 import io.cucumber.java.Scenario;
 import io.restassured.response.Response;
 import requestClassPojo.BaseRequest;
+import utils.PropertiesHelper;
 
 import java.lang.reflect.Field;
+import java.util.Iterator;
 
 public class ApiCall extends Request {
     private RequestBody body=null;
@@ -41,8 +43,16 @@ public void addHeader(String name,String value){
         requestSpecification=requestSpecification.pathParam(name,value);
     }
     public Response callAPI(String apiName) {
-    this.clsName=apiName;
-        String endPointValue = (String) super.configHelper.getValue(apiName);
+
+        Iterator<Object> iterator=configHelper.returnPro().keySet().iterator();
+        while(iterator.hasNext()){
+            String k=(String)iterator.next();
+            if(apiName.contains(k)){
+                apiName=k;
+            }
+        }
+        this.clsName=apiName;
+           String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];
         String apiEndPoint = endPointValue.split("@@@")[1];
         sc.log("EndPoint is "+apiEndPoint);
@@ -55,7 +65,9 @@ public void addHeader(String name,String value){
         Field[] fields=body.returnRequestBodyObject().getClass().getDeclaredFields();
         for(Field field:fields){
             try {
-                sc.log(body.returnRequestBodyObject().getClass().getSimpleName()+" field name "+field.getName()+" value is "+(String) field.get(body.returnRequestBodyObject()));
+                sc.log(body.returnRequestBodyObject().getClass().getSimpleName()+
+                        " field name "+field.getName()+
+                        " value is "+(String) field.get(body.returnRequestBodyObject()));
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
@@ -90,6 +102,14 @@ public void addHeader(String name,String value){
         }
     }
     public Response callAPI(String apiName,String current,String tobeReplaced) {
+
+        Iterator<Object> iterator=configHelper.returnPro().keySet().iterator();
+        while(iterator.hasNext()){
+            String k=(String)iterator.next();
+            if(apiName.contains(k)){
+                apiName=k;
+            }
+        }
         this.clsName=apiName;
         String endPointValue = (String) super.configHelper.getValue(apiName);
         String apiMethodType = endPointValue.split("@@@")[0];

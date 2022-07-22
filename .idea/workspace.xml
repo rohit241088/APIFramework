@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b5551119-c177-4d14-bd65-25275576f7ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RequestBuilder/RequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RequestBuilder/RequestBody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/base/ApiCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/base/ApiCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/requestClassPojo/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/requestClassPojo/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/requestClassPojo/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/requestClassPojo/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/requestClassPojo/UpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/requestClassPojo/UpdateUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/PropertiesHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/PropertiesHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/LoginT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/SingleUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/SingleUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/UpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/UpdateUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinitions/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinitions/Users.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,12 +140,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/ApiCall.java</url>
-          <line>37</line>
+          <line>39</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/base/ApiCall.java</url>
-          <line>36</line>
+          <line>38</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

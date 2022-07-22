@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import static stepDefinitions.BaseTest.*;
-public class Login {
+public class LoginT {
         public static responseClassPojo.Login loginResponse =null;
         private Response response=null;
     @Given("User is trying to login")

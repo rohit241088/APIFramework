@@ -15,8 +15,7 @@ public class Register {
     @Given("User is trying to register")
     public void user_is_trying_to_register() {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println("Token catched in Registration class"+Login.loginResponse.getToken());
-        apiCall.setRequestClass(requestClassPojo.Register.class);
+              apiCall.setRequestClass(requestClassPojo.Register.class);
             }
 
     @When("call the Register api with user name {string} and password {string}")
