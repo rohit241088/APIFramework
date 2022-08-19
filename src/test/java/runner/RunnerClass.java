@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features",
         glue = {"stepDefinitions","hooks"}
-        ,plugin = { "me.jvt.cucumber.report.PrettyReports:target/cucumber" }
-//        ,tags ="@Login"
+        ,plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+        //{ "me.jvt.cucumber.report.PrettyReports:target/cucumber" }
+    ,tags ="@Login"
 
 )
 public class RunnerClass {

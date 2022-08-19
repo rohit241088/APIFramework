@@ -1,35 +1,30 @@
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.type.ArrayType;
-import com.fasterxml.jackson.databind.type.TypeBindings;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.Filter;
 import io.restassured.filter.FilterContext;
 import io.restassured.http.Cookie;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
-import io.restassured.specification.RequestLogSpecification;
-import io.restassured.specification.RequestSpecification;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
 public class dummy {
     public static void main(String[] args) {
         ObjectMapper mapper = new ObjectMapper();
-        String jsonString = "{\"page\":2,\"per_page\":6,\"total\":12,\"total_pages\":2,\"data\":[{\"id\":7,\"email\":\"" +
+        String jsonString = "[{\"page\":2,\"per_page\":6,\"total\":12,\"total_pages\":2,\"data\":[{\"id\":7,\"email\":\"" +
                 "michael.lawson@reqres.in\",\"first_name\":\"Michael\",\"last_name\":\"Lawson\",\"avatar\":\"" +
                 "https://reqres.in/img/faces/7-image.jpg\"},{\"id\":8,\"email\":\"lindsay.ferguson@reqres.in\",\"first_name\":\"Lindsay\"" +
                 ",\"last_name\":\"Ferguson\",\"avatar\":\"https://reqres.in/img/faces/8-image.jpg\"},{\"id\":9,\"email\":\"tobias.funke@reqres.in\"" +
@@ -38,7 +33,7 @@ public class dummy {
                 "{\"id\":11,\"email\":\"george.edwards@reqres.in\",\"first_name\":\"George\",\"last_name\":\"Edwards\",\"avatar\":" +
                 "\"https://reqres.in/img/faces/11-image.jpg\"},{\"id\":12,\"email\":\"rachel.howell@reqres.in\",\"first_name\":\"Rachel\",\"last_name\"" +
                 ":\"Howell\",\"avatar\":\"https://reqres.in/img/faces/12-image.jpg\"}],\"" +
-                "support\":{\"url\":\"https://reqres.in/#support-heading\",\"text\":\"To keep ReqRes free, contributions towards server costs are appreciated!\"}}";
+                "support\":{\"url\":\"https://reqres.in/#support-heading\",\"text\":\"To keep ReqRes free, contributions towards server costs are appreciated!\"}}]";
 
         String sampleArray="\"[1,2,3]\"";
         //map json to student
@@ -47,7 +42,7 @@ public class dummy {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
           ///  TreeNode t=mapper.createParser(sampleArray).readValueAsTree();
         //    JsonParser jsonParser=mapper.createParser(sampleArray);
-         //       Users users = mapper.readValue(jsonString, Users.class);
+              Users[] users = mapper.readValue(jsonString, Users[].class);
             JsonPath jsonResponse=new JsonPath(jsonString);
           List<LinkedHashMap> object=jsonResponse.get("data");
           List<JsonObject>jsonObjects= jsonResponse.get("data");
@@ -83,11 +78,13 @@ public class dummy {
            }).when().get();
 
      //       System.out.println(logSpecification.everything());
-                  given().when().post("https://www.google.com").then().log().all();
+                  given().when().get("https://www.google.com").then().log().all();
          JsonNode jsonNode=mapper.readTree(jsonString);
 
         //    System.out.println(jsonNode.get(0).get("page").textValue());
-//            Map<String, Object> map= mapper.readValue(jsonString, new TypeReference<Map<String,Object>>(){});
+      List< Map<String, Object>> map= mapper.readValue(jsonString, new TypeReference<List<Map<String,Object>>>(){});
+        //     Map<String, Object> maps= mapper.readValue(jsonString, new TypeReference<Map<String,Object>>(){});
+     //  Users users=mapper.readValue(jsonString,Users.class);
 //mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Users[].class);
 //            String value=mapper.writerWithDefaultPrettyPrinter().writeValueAsString(new Users.Support());
 //           String cName= mapper.createParser(jsonString).getCurrentName();
@@ -108,7 +105,7 @@ public class dummy {
 //            );
             //System.out.println(users.getData().get(0).getEmail());
 
-         //   jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+            jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
 
             System.out.println();
 
